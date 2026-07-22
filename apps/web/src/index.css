@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FCFF51;
+  --color-secondary: #FCF6F1;
+  --color-card: #FFFFFF;
+  --color-dark: #1E1E1E;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: Georgia, 'GT Alpina Thin', 'GT Alpina', serif;
+  --font-serif-italic: Georgia, 'GT Alpina Thin Italic', 'GT Alpina', serif;
+  --font-mono: Georgia, serif;
+
+  --text-2xs: 0.65rem;
+}
+
+:root {
+  background-color: var(--color-secondary);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-secondary);
+  color: var(--color-dark);
+}
+
+/* Headings use Georgia */
+h1, h2, h3, h4, .page-title, .hero-title {
+  font-family: Georgia, var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* All code numbers, values, font-mono & odometer use Georgia */
+.font-mono, .font-number, [data-number], .hero-title {
+  font-family: Georgia, serif;
+}
+
+.accent-italic {
+  font-family: var(--font-serif-italic);
+  font-style: italic;
+}
+
+/* --- PRINT & PDF EXPORT STYLES --- */
+.print-only {
+  display: none !important;
+}
+
+@page {
+  margin: 0.6cm;
+  size: A4 portrait;
+}
+
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html, body, main {
+    width: 100% !important;
+    min-height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  /* Hide app shell headers, footers, forms, buttons & controls */
+  header,
+  footer,
+  .no-print,
+  button,
+  form,
+  select,
+  input,
+  .pagination-footer {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-only div {
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Force full width and remove side padding on main wrapper */
+  .max-w-6xl, .p-6, .sm\:p-8 {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Target metric cards specifically (4-column grid items) for 1px solid border */
+  .grid-cols-1 > div.bg-card,
+  .grid-cols-2 > div.bg-card,
+  .grid-cols-4 > div.bg-card,
+  .lg\:grid-cols-4 > div.bg-card {
+    border: 1px solid #1e1e1e !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  .shadow-xs, .bg-primary\/20, .bg-secondary {
+    box-shadow: none !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+  }
+
+  /* Table PDF print layout */
+  .overflow-x-auto {
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  /* Remove outer table wrapper double border */
+  .overflow-hidden.bg-card {
+    border: none !important;
+  }
+
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: auto;
+    border: 1px solid #1e1e1e !important;
+    background: #ffffff !important;
+  }
+
+  /* Repeat table header on every printed page */
+  thead {
+    display: table-header-group !important;
+  }
+
+  /* Clean row break without cutting UI lines */
+  tbody tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: #ffffff !important;
+  }
+
+  /* Horizontal row borders only - NO vertical column borders */
+  th, td {
+    border: none !important;
+    border-bottom: 1px solid #1e1e1e !important;
+    background: #ffffff !important;
+  }
+
+  th {
+    border-bottom: 2px solid #1e1e1e !important;
+    background-color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  .print-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+}

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <!-- Transparent Background (No solid background circle) -->
+  <!-- Diagonal Connecting Line from Node 1 to Node 3 -->
+  <line x1="55" y1="145" x2="145" y2="55" stroke="#1E1E1E" stroke-width="8" stroke-linecap="round" />
+
+  <!-- Node 1 (Bottom Left): Dark Rounded Square -->
+  <rect x="35" y="125" width="40" height="40" rx="10" fill="#222222" />
+
+  <!-- Node 2 (Center): Dark Rounded Square with Diagonal Slash Line Cutout -->
+  <rect x="80" y="80" width="40" height="40" rx="10" fill="#222222" />
+  <line x1="72" y1="128" x2="128" y2="72" stroke="#FCF6F1" stroke-width="6" stroke-linecap="round" />
+
+  <!-- Node 3 (Top Right): Yellow Outline Rounded Square -->
+  <rect x="125" y="35" width="40" height="40" rx="10" fill="none" stroke="#FFDD44" stroke-width="8" />
+
+  <!-- Growth Line Chart inside Node 3 breaking through top-right -->
+  <path d="M124 56 L137 43 L146 49 L162 33" fill="none" stroke="#FFDD44" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
