@@ -202,9 +202,17 @@ flowchart LR
 
 ---
 
-## 7. Roadmap Masa Depan (v2 Ideas)
+## 7. Smart Contracts & Deployment Status
 
-1. **ERC-8004 Agent Registration:** Registrasi Celalyze secara resmi sebagai Agentic Entity terverifikasi pada jaringan Celo.
-2. **Aigora Feedback Loop:** Integrasi telemetri dan sistem evaluasi performa agent berbasis komunitas Aigora.
-3. **Onchain Tax Snapshot:** Menyediakan fitur opsional bagi user untuk mempublikasikan hash bukti (*proof*) laporan pajak ke smart contract Celo.
-4. **Multi-Chain Support:** Ekspansi cakupan analitik ke jaringan EVM Layer-2 lainnya (seperti Base, Arbitrum) dengan tetap menjadikan Celo sebagai *primary chain*.
+Celalyze telah berhasil men-deploy 2 smart contract di **Celo Mainnet** (Chain ID: `42220`) yang terverifikasi di Sourcify:
+
+1. **`AgentRegistry`** (`0x60EeCE2904bBF0f4B8eD4ec35cD69658cAFeE1da`): Registrasi identitas & kapabilitas Celalyze sebagai **Agent ID `0`** di Celo Mainnet.
+2. **`TaxReportAttestation`** (`0xB21D6470363e7d2E4a75d5386fA369E9FcB5BA6f`): Memfasilitasi penerbitan hash `keccak256` dari laporan pajak pengguna secara terverifikasi on-chain.
+
+---
+
+## 8. Roadmap Masa Depan (v2 Ideas)
+
+1. **Aigora Feedback Loop:** Integrasi telemetri dan sistem evaluasi performa agent berbasis komunitas Aigora.
+2. **Multi-Chain Support:** Ekspansi cakupan analitik ke jaringan EVM Layer-2 lainnya (seperti Base, Arbitrum) dengan tetap menjadikan Celo sebagai *primary chain*.
+

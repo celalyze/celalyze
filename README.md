@@ -38,7 +38,7 @@ Built for **Celo Hackathon** — targeting Track 3 (Askbots) & Track 4 (Aigora).
 celalyze/
 ├── apps/
 │   ├── web/          # Vite + React frontend
-│   └── contracts/    # Foundry smart contracts (future)
+│   └── contracts/    # Foundry smart contracts (TaxReportAttestation & AgentRegistry)
 ├── .env.example      # Environment variable template
 ├── PRD.md            # Product Requirement Document
 ├── AGENTS.md         # AI agent development guidelines
