@@ -284,7 +284,7 @@ const OutroSlide: React.FC = () => {
             display: 'inline-block',
           }}
         >
-          celalyze.netlify.app
+          celalyze.vercel.app
         </div>
       </div>
     </AbsoluteFill>

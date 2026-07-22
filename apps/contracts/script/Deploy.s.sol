@@ -26,7 +26,7 @@ contract Deploy is Script {
             "Celalyze",
             "1.0.0",
             "Onchain Tax & Portfolio Agent for Celo. Read-only AI agent for PnL calculation, tax classification, and natural language portfolio insights.",
-            "https://celalyze.netlify.app",
+            "https://celalyze.vercel.app",
             "tax,pnl,chat,attestation"
         );
         console.log("Celalyze registered as agentId:", agentId);

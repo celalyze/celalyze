@@ -41,7 +41,7 @@ contract CelalyzeTest is Test {
             "Celalyze",
             "1.0.0",
             "Onchain Tax & Portfolio Agent",
-            "https://celalyze.netlify.app",
+            "https://celalyze.vercel.app",
             "tax,pnl,chat,attestation"
         );
 

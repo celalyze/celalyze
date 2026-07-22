@@ -27,4 +27,4 @@ To complete your video presentation with voiceover audio:
 "With our Interactive AI Chat Agent, you can ask complex financial questions in plain English—such as checking your net capital gains or deductible gas expenses—with instant grounding on your Celo wallet data."
 
 #### 02:45 - 03:00 (Slide 6: Outro & Call To Action)
-"Experience automated PnL calculation and tax intelligence today. Try Celalyze live on Celo Mainnet at celalyze.netlify.app!"
+"Experience automated PnL calculation and tax intelligence today. Try Celalyze live on Celo Mainnet at celalyze.vercel.app!"
