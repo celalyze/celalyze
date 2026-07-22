@@ -1,9 +1,10 @@
-import { createContext, useContext, type ReactNode } from 'react'
-import { useAccount, useDisconnect } from 'wagmi'
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { useConnectModal, useAccountModal } from '@rainbow-me/rainbowkit'
 
 interface WalletContextType {
   isConnected: boolean
+  isMiniPay: boolean
   address: string | undefined
   shortAddress: string | undefined
   connectWallet: () => void
@@ -16,8 +17,28 @@ const WalletContext = createContext<WalletContextType | undefined>(undefined)
 export function WalletProvider({ children }: { children: ReactNode }) {
   const { address, isConnected } = useAccount()
   const { disconnect } = useDisconnect()
+  const { connect, connectors } = useConnect()
   const { openConnectModal } = useConnectModal()
   const { openAccountModal } = useAccountModal()
+
+  const [isMiniPay, setIsMiniPay] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const ethereum = (window as any).ethereum
+      const provider = (window as any).provider
+      const isMP = Boolean(ethereum?.isMiniPay || provider?.isMiniPay)
+      setIsMiniPay(isMP)
+
+      if (isMP && !isConnected) {
+        const injectedConnector =
+          connectors.find((c) => c.id === 'injected' || c.type === 'injected') || connectors[0]
+        if (injectedConnector) {
+          connect({ connector: injectedConnector })
+        }
+      }
+    }
+  }, [connect, connectors, isConnected])
 
   const shortAddress = address
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
@@ -39,6 +60,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     <WalletContext.Provider
       value={{
         isConnected,
+        isMiniPay,
         address,
         shortAddress,
         connectWallet,
