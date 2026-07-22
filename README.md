@@ -4,8 +4,6 @@
 
 Celalyze is a read-only AI agent that automatically reads your Celo Mainnet wallet transaction history, classifies each transaction for tax purposes, calculates realized/unrealized PnL, and delivers insights through an interactive dashboard, structured tax reports, and an AI chat interface.
 
-Built for **Celo Hackathon** — targeting Track 3 (Askbots) & Track 4 (Aigora).
-
 ---
 
 ## Features
@@ -167,7 +165,7 @@ function verify(address wallet, uint16 taxYear, bytes32 reportHash) external vie
 
 ### AgentRegistry
 
-On-chain registry for AI agents operating in the Celo ecosystem. Celalyze registers itself here, making its identity, version, and capabilities publicly verifiable — aligned with Track 4 (Aigora).
+On-chain registry for AI agents operating in the Celo ecosystem. Celalyze registers itself here, making its identity, version, and capabilities publicly verifiable.
 
 ```solidity
 // Register an AI agent
