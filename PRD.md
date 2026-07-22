@@ -1,147 +1,139 @@
 # Product Requirement Document (PRD): Celalyze
 
-**Nama Produk:** Celalyze  
+**Product Name:** Celalyze  
 **Tagline:** Onchain Tax & Portfolio Agent for Celo  
-**Versi:** 1.0 (Hackathon MVP)  
+**Version:** 1.0  
 **Status:** Approved  
-**Tanggal:** 22 Juli 2026  
+**Date:** July 22, 2026  
 
 ---
 
-## 1. Ringkasan Eksekutif & Visi Produk
+## 1. Executive Summary & Product Vision
 
 ### 1.1 Problem Statement
-Melakukan kalkulasi Profit and Loss (PnL) serta menentukan kewajiban pajak pada ekosistem onchain Celo sering kali membingungkan pengguna. Aktivitas DeFi seperti token swap, yield farming, staking, transfer antar wallet, dan penerimaan airdrop memerlukan kategorisasi manual yang rumit. Data transaksi mentah dari *blockchain explorer* juga sangat sulit diinterpretasikan tanpa konteks finansial yang jelas.
+Calculating Profit and Loss (PnL) and determining tax obligations in the Celo onchain ecosystem is often complex and confusing for users. DeFi activities such as token swaps, yield farming, staking, transfers between wallets, and airdrop receipts require tedious manual categorization. Raw transaction data from blockchain explorers is difficult to interpret without clear financial context.
 
-### 1.2 Solusi
-**Celalyze** hadir sebagai *AI Agent* analitis berbasis read-only yang secara otomatis membaca histori transaksi wallet di Celo Mainnet. Celalyze mengklasifikasikan setiap transaksi berdasarkan kategorisasi pajak, menghitung PnL terrealisasi (realized) maupun belum terrealisasi (unrealized), serta memberikan insight komprehensif melalui *interactive dashboard*, halaman laporan pajak terstruktur, dan fitur *interactive AI chat*.
-
-### 1.3 Scope Hackathon & Alignment Track
-Untuk cakupan MVP Hackathon, Celalyze difokuskan sebagai **read-only agent** (analitik & *reporting*, tanpa eksekusi transaksi/trade otomatis). Produk ini dioptimalkan khusus untuk:
-* **Track 3 (Askbots):** Integrasi AI Agent yang mampu menjawab pertanyaan kompleks seputar portofolio dan pajak onchain secara *natural language*.
-* **Track 4 (Aigora):** Penerapan arsitektur agentic yang rapi, transparan, dan dapat dievaluasi (*evals*).
+### 1.2 Solution
+**Celalyze** is an analytical, read-only AI Agent that automatically indexes wallet transaction history on Celo Mainnet. Celalyze classifies each transaction into tax categories, calculates both realized and unrealized PnL, and provides comprehensive financial insights through an interactive dashboard, structured tax report pages, and an interactive AI chat interface.
 
 ---
 
-## 2. Target Pengguna & Use Cases
+## 2. Target Users & Use Cases
 
-### 2.1 Target Persona
-1. **Celo DeFi User / Trader / Yield Farmer:** Pengguna aktif di ekosistem Celo yang membutuhkan laporan PnL transparan dan estimasi dampak pajak atas aktivitas trading & yield.
-2. **Web3 Auditor / Accountant:** Profesional atau individu yang membutuhkan rekap transaksi onchain terurut dengan kategori yang akurat dan dapat diexport.
-3. **Hackathon Judges & Builders:** Penilai dan pengembang yang ingin melihat contoh konkret implementasi *AI agent* analitik berbasis data onchain Celo yang modular dan berkinerja tinggi.
+### 2.1 Target Personas
+1. **Celo DeFi Users / Traders / Yield Farmers:** Active users in the Celo ecosystem requiring transparent PnL accounting and tax impact estimates for their trading and yield activities.
+2. **Web3 Auditors / Accountants:** Professionals or individuals needing chronological, accurately categorized, and exportable onchain transaction records.
+3. **DeFi Analysts & Ecosystem Participants:** Evaluators and developers looking for a high-performance, modular analytical AI agent operating on Celo onchain data.
 
 ### 2.2 Core Use Cases
-* **UC-01:** *"Menganalisis histori transaksi wallet Celo untuk tahun pajak berjalan."*
-* **UC-02:** *"Penjelasan rinci mengenai keuntungan (gains) dan kerugian (losses) yang telah terrealisasi."*
-* **UC-03:** *"Identifikasi transaksi mana saja yang dikenakan pajak (taxable) beserta alasan kategorisasinya."*
-* **UC-04:** *"Fitur koreksi label secara manual oleh pengguna jika terdapat klasifikasi transaksi yang kurang akurat."*
-* **UC-05:** *"Konsultasi portofolio & pertanyaan pajak secara kontekstual melalui AI Chat."*
+* **UC-01:** *"Analyze Celo wallet transaction history for the selected tax year."*
+* **UC-02:** *"View a detailed breakdown of realized gains and losses."*
+* **UC-03:** *"Identify taxable transactions along with clear classification rationales."*
+* **UC-04:** *"Manually correct transaction labels to refine and train categorization accuracy."*
+* **UC-05:** *"Consult portfolio metrics and tax questions contextually using the AI Chat Agent."*
 
 ---
 
-## 3. Spesifikasi Fitur Utama (Core Features)
+## 3. Core Feature Specifications
 
 ### 3.1 Dashboard Page (`/dashboard`)
-* **Overview Metrics:** Total Portfolio Value (USD/IDR), Total Realized PnL, Total Unrealized PnL, Total Taxable Income.
-* **Portfolio Chart:** Grafik visualisasi histori nilai portofolio dari waktu ke waktu.
-* **Recent Activity & Tax Highlights:** Ringkasan singkat transaksi *taxable* terbaru dan estimasi kewajiban pajak.
+* **Overview Metrics:** Total Portfolio Value (USD/EUR/IDR), Total Realized PnL, Total Unrealized PnL, Total Taxable Income.
+* **Portfolio Chart:** Visual chart tracking portfolio historical performance over time.
+* **Recent Activity & Tax Highlights:** Summary of recent taxable transactions and estimated tax liabilities.
 
 ### 3.2 Tax Reports Page (`/tax-reports`)
-* **Filter Periode:** Filter berdasarkan Tahun Pajak (misal: 2025, 2026) atau kustom rentang tanggal.
+* **Period Filter:** Filter by Tax Year (e.g., 2025, 2026) or custom date range.
 * **Taxable Breakdown:**
   * Capital Gains / Losses (Short-term & Long-term).
-  * Ordinary Income (Yield Farming, Staking Rewards, Airdrop, Salary/Grant).
-* **Export Functionality:** Export laporan ke format **CSV** dan **PDF** terformat rapi untuk keperluan audit/pajak.
+  * Ordinary Income (Yield Farming, Staking Rewards, Airdrops, Salary/Grants).
+* **Export Functionality:** Export reports into clean **CSV** (IRS Form 8949 format) and **PDF** formats for accounting and auditing purposes.
 
 ### 3.3 History & Labeling Page (`/history`)
-* **Transaction Table:** Menampilkan daftar transaksi onchain Celo per wallet (Tx Hash, Timestamp, Method/Action, Amount, Token, Kategori Pajak, Confidence Score).
-* **Kategori Pajak:** `Income`, `Capital Gain/Loss (Swap)`, `Transfer (Non-Taxable)`, `Yield/Staking Reward`, `Airdrop`, `Gas Fee`.
-* **AI Confidence Score:** Indikator tingkat kepastian klasifikasi AI (misal: 95% High, 60% Low).
-* **UI Manual Correction:** Antarmuka bagi pengguna untuk mengganti label jika AI salah mengklasifikasi. Hasil koreksi disimpan ke Database untuk meningkatkan akurasi *feedback loop*.
+* **Transaction Table:** Displays Celo onchain transactions per wallet (Tx Hash, Timestamp, Method/Action, Amount, Token, Tax Category, Confidence Score).
+* **Tax Categories:** `Income`, `Capital Gain/Loss (Swap)`, `Transfer (Non-Taxable)`, `Yield/Staking Reward`, `Airdrop`, `Gas Fee`.
+* **AI Confidence Score:** Indicates classification certainty (e.g., 95% High, 60% Low).
+* **UI Manual Correction:** Allows users to adjust labels if misclassified. Corrections are stored in the database to improve model accuracy via a continuous feedback loop.
 
 ### 3.4 Settings & Wallet Page (`/settings`)
-* **Wallet Management:** Input & kelola alamat wallet Celo (`0x...`).
-* **Preferensi Pajak & Portofolio:** Pemilihan mata uang (*Fiat currency*: USD, EUR, IDR) dan standar/wilayah perpajakan (*Tax Region*).
-* **Agent Mode:** Informasi mode agent (`Read-Only` untuk MVP).
+* **Wallet Management:** Input and manage Celo wallet addresses (`0x...`).
+* **Tax & Portfolio Preferences:** Selection of fiat currency (USD, EUR, IDR) and tax jurisdiction/accounting standard (FIFO, LIFO, HIFO).
+* **Agent Mode:** Indicates current agent mode (`Read-Only`).
 
 ### 3.5 Interactive AI Chat Page (`/chat`)
-* **Natural Language Q&A:** Chatbot berbasis RAG (*Retrieval-Augmented Generation*) di atas data PnL dan transaksi pengguna.
-* **Prompt Suggestions:** Contoh pertanyaan cepat seperti *"Berapa total realized gain saya di Q2?"* atau *"Apakah klaim airdrop bulan lalu masuk taxable income?"*.
-* **Response Feedback:** Tombol *Thumbs Up / Thumbs Down* pada setiap jawaban untuk evaluasi performa *Askbots*.
+* **Natural Language Q&A:** RAG-powered (Retrieval-Augmented Generation) AI Assistant operating over user PnL and transaction datasets.
+* **Prompt Suggestions:** One-click queries such as *"What were my net realized gains in Q2?"* or *"Was my airdrop claim last month taxable?"*.
+* **Response Feedback:** Thumbs Up / Thumbs Down feedback mechanism on responses for agent quality evaluation.
 
-### 3.6 Desain UI/UX & Sistem Warna (Design System)
-* **Primary Color:** `#FCFF51` (Vibrant Celo Yellow) — Digunakan untuk aksen utama, tombol aksi utama (*primary CTA*), sorotan indikator aktif, dan elemen *branding* kunci.
-* **Secondary / Background Color:** `#FCF6F1` (Warm Soft Cream) — Digunakan sebagai warna latar belakang halaman utama (*page canvas/background*), memberikan tampilan yang bersih, hangat, dan nyaman dilihat.
-* **Tipografi & Font:**
-  * **Default / Primary Sans-Serif Font:** `Inter` — Digunakan untuk *body text*, antarmuka aplikasi (*UI elements*), tabel transaksi, navigasi, dan tombol demi keterbacaan (*readability*) yang optimal.
-  * **Secondary / Brand Serif Font (Khusus Titles & Headings):** `GT Alpina Thin` & `GT Alpina Thin Italic` (Default weight: `400`).
-    * **Contoh Penggunaan:**
+### 3.6 UI/UX & Design System Specifications
+* **Primary Color:** `#FCFF51` (Vibrant Celo Yellow) — Used for primary CTAs, active indicators, brand accents, and focused states.
+* **Secondary / Background Color:** `#FCF6F1` (Warm Soft Cream) — Main page canvas background color providing a warm, clean, high-contrast visual surface.
+* **Typography Hierarchy:**
+  * **Default / Primary Sans-Serif Font:** `Inter` — Used for body text, UI components, data tables, navigation, inputs, and buttons for optimal legibility.
+  * **Secondary / Brand Serif Font (Titles & Headings):** `GT Alpina Thin` & `GT Alpina Thin Italic` (Default weight: `400`).
+    * **Usage Examples:**
       * **Page Title / Hero Title:** *"Celalyze: Onchain Tax & Portfolio Agent"* (`font-family: 'GT Alpina Thin', serif; font-weight: 400;`)
-      * **Section Headings (H1, H2, H3):** Judul halaman Dashboard, Tax Reports, History, dan Chat.
-      * **Card Title & Metrics Highlights:** *"Realized Capital Gains"*, *"Taxable Income Overview"*.
-    * **Contoh Penerapan CSS:**
+      * **Section Headings (H1, H2, H3):** Dashboard, Tax Reports, History, and Chat titles.
+      * **Card Titles & Metric Highlights:** *"Realized Capital Gains"*, *"Taxable Income Overview"*.
+    * **CSS Implementation:**
       ```css
-      /* Styling untuk Title/Heading dengan GT Alpina */
       h1, h2, h3, .page-title, .hero-title {
         font-family: 'GT Alpina Thin', 'GT Alpina', Georgia, serif;
         font-weight: 400;
         letter-spacing: -0.02em;
       }
 
-      /* Italic Accent pada Title */
       .hero-title span.accent {
         font-family: 'GT Alpina Thin Italic', 'GT Alpina', Georgia, serif;
         font-style: italic;
       }
       ```
 * **Text & Neutral Contrast:**
-  * Dark Neutral (`#1E1E1E` / `#111827`) untuk teks utama, judul, dan *border* kontras tinggi agar rasio kontras warna keterbacaan (WCAG AAA) terpenuhi di atas warna `#FCFF51` dan `#FCF6F1`.
-  * Card Background (`#FFFFFF`) di atas latar belakang `#FCF6F1`.
-* **Aturan Border Radius & Bentuk Komponen (Shapes & Rounding):**
-  * **Full Rounded (`rounded-full` / Pill Shape):** Digunakan untuk semua elemen interaktif kecil dan badge, seperti **Button**, **Pill**, **Badge**, **Chip / Tag**, **Search Input Bar**, **Confidence Score Pills**, dan **Status Indicator**.
-  * **Sharp / Rounded None (`rounded-none` / 0px radius):** Digunakan untuk semua wadah utama, seperti **Card Container**, **Panels**, **Data Tables**, **Modals**, **Sidebar**, dan **Section Blocks** (desain *sharp-edge container* kontras dengan *pill-shaped elements*).
-* **Aset & Estetika Visual:** Menggunakan antarmuka modern *light theme* berestetika hangat dengan kontras tinggi antara wadah tegas (*sharp cards*) dan elemen interaktif melengkung halus (*full rounded buttons & pills*).
+  * Dark Neutral (`#1E1E1E` / `#111827`) for body text, headings, and high-contrast borders to satisfy WCAG AAA contrast standards over `#FCFF51` and `#FCF6F1`.
+  * Card Background (`#FFFFFF`) set over `#FCF6F1` canvas.
+* **Border Radius & Component Shapes:**
+  * **Full Rounded (`rounded-full` / Pill Shape):** Applied to all small interactive elements and badges: Buttons, Pills, Badges, Chips/Tags, Search Input Bars, Confidence Score Badges, and Status Indicators.
+  * **Sharp / Rounded None (`rounded-none` / 0px radius):** Applied to structural containers: Card Containers, Panels, Data Tables, Modals, Sidebars, and Section Blocks (high visual contrast between sharp containers and smooth pill controls).
 
 ---
 
-## 4. Arsitektur Sistem & Spesifikasi AI Agent
+## 4. System Architecture & AI Agent Specs
 
 ### 4.1 Tech Stack
-* **Frontend:** Next.js (React), Tailwind CSS / Vanilla CSS, Lucide Icons, Recharts (Charts).
-* **Backend Service:** Node.js (Express/Fastify) atau Python (FastAPI).
-* **Agent Orchestrator:** LangChain / LangGraph (mengelola interaksi antara LLM dan deterministic tools).
-* **LLM Engine:** OpenAI GPT-4o / Claude 3.5 Sonnet (reasoning & penjelasan natural language).
-* **Data Provider:** GoldRush API (Covalent) untuk fetching balances dan transaction history Celo (`celo-mainnet`).
-* **Database:** PostgreSQL / MongoDB (menyimpan data wallet, label koreksi, laporan pajak, dan sesi chat).
+* **Frontend:** Next.js (React), Tailwind CSS / Vanilla CSS, Lucide Icons, Recharts.
+* **Backend Service:** Node.js (Express/Fastify) or Python (FastAPI).
+* **Agent Orchestrator:** LangChain / LangGraph (coordinating LLM reasoning with deterministic tools).
+* **LLM Engine:** OpenAI GPT-4o / Claude 3.5 Sonnet (reasoning and natural language synthesis).
+* **Data Provider:** GoldRush API (Covalent) for fetching Celo token balances and transaction history (`celo-mainnet`).
+* **Database:** PostgreSQL / MongoDB (storing user wallets, manual label overrides, tax reports, and chat sessions).
 
-### 4.2 Spesifikasi Agent Tools
-Agent bekerja secara analitis (*read-only*) dengan mengeksekusi *deterministic tools* berikut:
+### 4.2 Agent Tools Specifications
+The agent operates in a strict read-only analytical mode by calling deterministic tools:
 
 1. `get_wallet_overview(wallet_address)`  
-   *Mengambil data saldo token, nilai portofolio, dan alokasi aset via GoldRush API.*
+   *Fetches token balances, portfolio value, and asset allocations via GoldRush API.*
 2. `get_wallet_history(wallet_address, start_date, end_date)`  
-   *Mengambil seluruh histori transaksi Celo mainnet dalam rentang waktu tertentu.*
+   *Fetches raw Celo mainnet transaction history within the specified date range.*
 3. `classify_transactions(raw_transactions)`  
-   *Mengkombinasikan rule-based engine dan LLM untuk memberi label kategori pajak & confidence score pada tiap transaksi.*
+   *Combines a rule-based engine with LLM classification to assign tax categories and confidence scores to each transaction.*
 4. `build_tax_report(classified_transactions, tax_rules)`  
-   *Kalkulasi angka PnL terrealisasi, capital gain/loss, dan total taxable income.*
+   *Calculates realized PnL, capital gains/losses, and total taxable income.*
 5. `summarize_insights(tax_report_data, query)`  
-   *Menerjemahkan kalkulasi finansial menjadi penjelasan natural language yang mudah dipahami.*
+   *Translates financial calculations into natural language summaries.*
 
-### 4.3 Endpoint API Specs (Backend)
+### 4.3 API Endpoint Specs (Backend)
 
-| Method | Endpoint | Deskripsi |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `POST` | `/api/v1/analyze-wallet` | Memicu analisis awal wallet (fetch GoldRush, klasifikasi, & simpan DB). |
-| `GET` | `/api/v1/tax-report` | Mengambil data rekap laporan pajak berdasarkan wallet & tahun. |
-| `GET` | `/api/v1/history` | Mengambil daftar transaksi terklasifikasi dengan opsi pagination & filter. |
-| `POST` | `/api/v1/history/correct` | Mengupdate label transaksi secara manual oleh pengguna. |
-| `POST` | `/api/v1/chat` | Mengirim pertanyaan pengguna ke AI Chat Agent dengan konteks data wallet. |
-| `GET` | `/api/v1/settings` | Mengambil & mengupdate preferensi pengguna (fiat currency, tax region). |
+| `POST` | `/api/v1/analyze-wallet` | Triggers initial wallet indexing (GoldRush fetch, classification, & DB save). |
+| `GET` | `/api/v1/tax-report` | Retrieves tax report breakdown for a specific wallet and year. |
+| `GET` | `/api/v1/history` | Fetches paginated transaction history with tax labels and confidence scores. |
+| `POST` | `/api/v1/history/correct` | Submits manual user label corrections to update DB and recalculate PnL. |
+| `POST` | `/api/v1/chat` | Submits natural language queries to the AI Chat Agent with wallet context. |
+| `GET` | `/api/v1/settings` | Gets and updates user preferences (fiat currency, tax region). |
 
 ---
 
-## 5. Alur Interaksi System (Interaction Flow)
+## 5. System Interaction Flow
 
 ```mermaid
 flowchart LR
@@ -181,38 +173,37 @@ flowchart LR
     GR -->|Onchain data| CELO
 ```
 
-1. **Flow "Analyze Wallet":** User memasukkan alamat wallet -> Backend memanggil GoldRush API -> Agent mengklasifikasikan transaksi & menghitung PnL -> Hasil disimpan di DB -> Dashboard menampilkan ringkasan.
-2. **Flow "Tax Report & Export":** User memilih filter tahun -> Backend mengambil data dari DB -> Menampilkan breakdown pajak -> User menekan tombol Export CSV/PDF.
-3. **Flow "Label Correction":** User melihat transaksi di Halaman History -> Mengubah label -> Backend memperbarui DB -> Rekalkulasi PnL dilakukan secara instan.
-4. **Flow "AI Chat Consultation":** User mengajukan pertanyaan -> Agent mengambil konteks data portofolio dari DB -> LLM menyusun jawaban kontekstual -> Jawaban ditampilkan di UI Chat.
+1. **"Analyze Wallet" Flow:** User inputs wallet address -> Backend calls GoldRush API -> Agent classifies transactions & computes PnL -> Saved to DB -> Dashboard displays metrics.
+2. **"Tax Report & Export" Flow:** User selects year filter -> Backend fetches data from DB -> Displays tax breakdown -> User exports CSV/PDF.
+3. **"Label Correction" Flow:** User updates category on History Page -> Backend updates DB -> Instant PnL recalculation.
+4. **"AI Chat Consultation" Flow:** User asks question -> Agent retrieves wallet data context from DB -> LLM formulates response -> Answer rendered in Chat UI.
 
 ---
 
-## 6. Guardrails, Safety, & Kriteria Evaluasi
+## 6. Guardrails, Safety, & Evaluation Metrics
 
-### 6.1 Guardrails & Keamanan
-* **Read-Only Scope:** Agent **TIDAK MEMILIKI** private key atau izin akses untuk mengeksekusi transaksi *write/send* onchain.
-* **API Key Protection:** Seluruh API Key (GoldRush, LLM provider) disimpan secara aman di environment variabel backend (`.env`).
-* **Input Validation:** Sanitasi alamat wallet Ethereum/Celo (`0x...`) sebelum diproses oleh sistem.
+### 6.1 Guardrails & Security
+* **Read-Only Scope:** The agent **NEVER** requests, stores, or handles private keys or transaction execution permissions.
+* **API Key Protection:** All API keys (GoldRush, LLM providers) are stored in server-side environment variables (`.env`).
+* **Input Validation:** EVM/Celo wallet addresses (`0x...` 40-character hex) are strictly validated before processing.
 
-### 6.2 Evaluasi Performa (Evals)
-* **Labeling Accuracy Rate:** Persentase transaksi yang berhasil diklasifikasikan dengan benar oleh AI pada percobaan pertama.
-* **PnL Math Consistency:** Memastikan perhitungan PnL terrealisasi konsisten dengan data harga historis.
-* **Chat Answer Relevance:** Pengukuran kepuasan pengguna melalui rating feedback (*thumbs up/down*) pada fitur Askbots.
+### 6.2 Evaluation Metrics
+* **Labeling Accuracy Rate:** Percentage of transactions correctly classified on the first pass.
+* **PnL Math Consistency:** Deterministic calculation accuracy verified against historical price feeds.
+* **Chat Answer Relevance:** User satisfaction measured via response feedback mechanisms.
 
 ---
 
 ## 7. Smart Contracts & Deployment Status
 
-Celalyze telah berhasil men-deploy 2 smart contract di **Celo Mainnet** (Chain ID: `42220`) yang terverifikasi di Sourcify:
+Celalyze has deployed two smart contracts on **Celo Mainnet** (Chain ID: `42220`), verified on Sourcify:
 
-1. **`AgentRegistry`** (`0x60EeCE2904bBF0f4B8eD4ec35cD69658cAFeE1da`): Registrasi identitas & kapabilitas Celalyze sebagai **Agent ID `0`** di Celo Mainnet.
-2. **`TaxReportAttestation`** (`0xB21D6470363e7d2E4a75d5386fA369E9FcB5BA6f`): Memfasilitasi penerbitan hash `keccak256` dari laporan pajak pengguna secara terverifikasi on-chain.
+1. **`AgentRegistry`** (`0x60EeCE2904bBF0f4B8eD4ec35cD69658cAFeE1da`): Registers identity and capabilities of Celalyze as **Agent ID `0`** on Celo Mainnet.
+2. **`TaxReportAttestation`** (`0xB21D6470363e7d2E4a75d5386fA369E9FcB5BA6f`): Enables onchain attestation and verification of `keccak256` tax report hashes.
 
 ---
 
-## 8. Roadmap Masa Depan (v2 Ideas)
+## 8. Future Roadmap
 
-1. **Aigora Feedback Loop:** Integrasi telemetri dan sistem evaluasi performa agent berbasis komunitas Aigora.
-2. **Multi-Chain Support:** Ekspansi cakupan analitik ke jaringan EVM Layer-2 lainnya (seperti Base, Arbitrum) dengan tetap menjadikan Celo sebagai *primary chain*.
-
+1. **Community Telemetry & Performance Feedback:** Enhanced telemetry and automated feedback loops for agent performance evaluation.
+2. **Multi-Chain Expansion:** Expanding analytical support to additional EVM Layer-2 networks (e.g., Base, Arbitrum) while retaining Celo as the primary ecosystem hub.
