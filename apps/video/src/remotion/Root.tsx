@@ -69,7 +69,7 @@ const PresentationSlide: React.FC<SlideProps> = ({
         padding: '60px',
         display: 'flex',
         flexDirection: 'column',
-        justify: 'space-between',
+        justifyContent: 'space-between',
         opacity,
       }}
     >
@@ -77,7 +77,7 @@ const PresentationSlide: React.FC<SlideProps> = ({
       <div
         style={{
           display: 'flex',
-          justify: 'space-between',
+          justifyContent: 'space-between',
           alignItems: 'center',
           transform: `translateY(${(1 - entrance) * -30}px)`,
         }}

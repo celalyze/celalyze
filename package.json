@@ -7,8 +7,8 @@
     "build": "dotenvx run -- pnpm --filter web build",
     "lint": "dotenvx run -- pnpm --filter web lint",
     "test:contracts": "dotenvx run -- forge test --root apps/contracts",
-    "video:dev": "npx remotion preview apps/web/src/remotion/index.ts",
-    "video:render": "npx remotion render apps/web/src/remotion/index.ts CelalyzePresentation out/presentation.mp4"
+    "video:dev": "pnpm --filter @celalyze/video dev",
+    "video:render": "pnpm --filter @celalyze/video build"
   },
   "devDependencies": {
     "@dotenvx/dotenvx": "^2.15.1"
