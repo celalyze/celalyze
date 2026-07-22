@@ -30,7 +30,9 @@ export function WalletProvider({ children }: { children: ReactNode }) {
       const isMP = Boolean(ethereum?.isMiniPay || provider?.isMiniPay)
       setIsMiniPay(isMP)
 
-      if (isMP && !isConnected) {
+      const userDisconnected = sessionStorage.getItem('minipay_disconnected') === 'true'
+
+      if (isMP && !isConnected && !userDisconnected) {
         const injectedConnector =
           connectors.find((c) => c.id === 'injected' || c.type === 'injected') || connectors[0]
         if (injectedConnector) {
@@ -45,9 +47,23 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     : undefined
 
   const connectWallet = () => {
+    sessionStorage.removeItem('minipay_disconnected')
+    if (isMiniPay) {
+      const injectedConnector =
+        connectors.find((c) => c.id === 'injected' || c.type === 'injected') || connectors[0]
+      if (injectedConnector) {
+        connect({ connector: injectedConnector })
+        return
+      }
+    }
     if (openConnectModal) {
       openConnectModal()
     }
+  }
+
+  const disconnectWallet = () => {
+    sessionStorage.setItem('minipay_disconnected', 'true')
+    disconnect()
   }
 
   const handleOpenAccountModal = () => {
@@ -65,7 +81,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         shortAddress,
         connectWallet,
         openAccountModal: handleOpenAccountModal,
-        disconnectWallet: disconnect,
+        disconnectWallet,
       }}
     >
       {children}
