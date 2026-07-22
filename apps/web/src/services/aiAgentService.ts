@@ -100,7 +100,7 @@ export function summarizeInsights(
 /**
  * Ask Celalyze Agent using Deterministic Agent Tools (PRD Spec Section 4.1)
  */
-export async function ask9RouterAgent(
+export async function askAIAgent(
   userQuery: string,
   walletAddress: string = DEFAULT_MENTO_ADDRESS,
   _conversationHistory: ChatMessage[] = []

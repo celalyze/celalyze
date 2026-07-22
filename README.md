@@ -24,7 +24,7 @@ Built for **Celo Hackathon** — targeting Track 3 (Askbots) & Track 4 (Aigora).
 |---|---|
 | Frontend | Vite + React + TypeScript, Tailwind CSS, Lucide Icons, Recharts |
 | Wallet / Web3 | wagmi, viem, RainbowKit |
-| AI Gateway | 9router (OpenAI-compatible) |
+| AI Engine | OpenAI / Claude / Local LLM (OpenAI-compatible) |
 | Onchain Data | GoldRush API (Covalent) — `celo-mainnet` |
 | Agent Orchestrator | LangChain / LangGraph |
 | Backend | Node.js (Express/Fastify) or Python (FastAPI) |
@@ -58,7 +58,7 @@ celalyze/
 
 ```bash
 # Clone the repo
-git clone https://github.com/vickyvaf/celalyze.git
+git clone https://github.com/celalyze/celalyze.git
 cd celalyze
 
 # Install dependencies
@@ -73,10 +73,6 @@ cp .env.example .env
 | Variable | Description |
 |---|---|
 | `VITE_APP_NAME` | Application name |
-| `VITE_9ROUTER_TARGET_URL` | 9router AI gateway base URL |
-| `VITE_9ROUTER_BASE_URL` | API proxy path |
-| `VITE_9ROUTER_API_KEY` | Your 9router API key |
-| `VITE_9ROUTER_MODEL` | LLM model to use |
 
 ### Run Development Server
 

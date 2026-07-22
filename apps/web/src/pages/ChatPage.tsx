@@ -9,7 +9,7 @@ import {
 } from 'lucide-react'
 import { useWallet } from '../context/WalletContext'
 import { DEFAULT_MENTO_ADDRESS } from '../services/celoService'
-import { ask9RouterAgent, type ChatMessage } from '../services/aiAgentService'
+import { askAIAgent, type ChatMessage } from '../services/aiAgentService'
 import { ChatMessageSkeleton } from '../components/Skeleton'
 
 function FormattedChatMessage({ content }: { content: string }) {
@@ -92,7 +92,7 @@ export function ChatPage() {
     setIsLoading(true)
 
     try {
-      const response = await ask9RouterAgent(query, activeAddress, messages)
+      const response = await askAIAgent(query, activeAddress, messages)
 
       const assistantMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
