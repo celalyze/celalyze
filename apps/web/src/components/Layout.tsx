@@ -27,7 +27,7 @@ export function Layout() {
   const landingNavItems = [
     { href: '/#how-it-works', label: 'How it works' },
     { href: '/#features', label: 'Features' },
-    { href: '/#developers', label: 'Developers' },
+    { href: '/#contracts', label: 'Smart Contracts' },
     { href: '/#get-started', label: 'Get Started' },
   ]
 

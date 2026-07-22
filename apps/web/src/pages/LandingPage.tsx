@@ -17,6 +17,9 @@ import {
   Trophy,
   Terminal,
   Download,
+  Code2,
+  ExternalLink,
+  ShieldCheck,
 } from 'lucide-react'
 import { OdometerCounter } from '../components/OdometerCounter'
 import { useWallet } from '../context/WalletContext'
@@ -488,48 +491,78 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* SECTION 4: BUILDERS & DEVELOPERS */}
-      <section id="developers" className="w-full bg-card border-b-2 border-dark">
+      {/* SECTION 4: SMART CONTRACTS & ONCHAIN VERIFICATION */}
+      <section id="contracts" className="w-full bg-card border-b-2 border-dark">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 py-16 sm:py-24">
           <div className="bg-secondary border-2 border-dark rounded-none p-8 sm:p-12 space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
-                <h2 className="hero-title text-3xl text-dark">For Developers & Institutions</h2>
+                <div className="inline-flex items-center gap-2 bg-primary px-3 py-1 border border-dark rounded-full text-xs font-semibold text-dark">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Onchain Verifiable Architecture</span>
+                </div>
+                <h2 className="hero-title text-3xl text-dark">Smart Contracts & Verification</h2>
                 <p className="text-xs sm:text-sm text-dark/80 leading-relaxed">
-                  Built for Celo's agentic ecosystem, Celalyze is an open foundation for onchain accounting and automated financial intelligence.
+                  Celalyze deploys immutable smart contracts on Celo Mainnet to register its agent identity and enable tamper-proof tax report attestations.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-center gap-3 text-xs text-dark">
                     <div className="w-5 h-5 rounded-full bg-primary border border-dark flex items-center justify-center text-dark flex-shrink-0">
                       <Brain className="w-3 h-3" />
                     </div>
-                    <span>Agent spec: analytical & read-only</span>
+                    <span><strong>AgentRegistry:</strong> Registered as Agent ID #0 on Celo Mainnet</span>
                   </li>
                   <li className="flex items-center gap-3 text-xs text-dark">
                     <div className="w-5 h-5 rounded-full bg-primary border border-dark flex items-center justify-center text-dark flex-shrink-0">
-                      <Layers className="w-3 h-3" />
+                      <ShieldCheck className="w-3 h-3" />
                     </div>
-                    <span>Integrates GoldRush for deep data traversal</span>
+                    <span><strong>TaxReportAttestation:</strong> Publish keccak256 report hash on-chain</span>
                   </li>
                   <li className="flex items-center gap-3 text-xs text-dark">
                     <div className="w-5 h-5 rounded-full bg-primary border border-dark flex items-center justify-center text-dark flex-shrink-0">
                       <Trophy className="w-3 h-3" />
                     </div>
-                    <span>Built-in Askbots & AI Agent intelligence</span>
+                    <span>100% Verified Code on Sourcify & Celo Mainnet</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-card border-2 border-dark rounded-none p-6 text-center space-y-3">
-                <div className="flex items-center justify-center gap-2 text-dark">
-                  <Terminal className="w-5 h-5" />
-                  <span className="text-xs font-mono font-semibold text-dark/70">TERMINAL PACKAGE</span>
+              <div className="bg-card border-2 border-dark rounded-none p-6 space-y-4">
+                <div className="flex items-center gap-2 text-dark border-b border-dark/20 pb-3">
+                  <Code2 className="w-4 h-4 text-dark" />
+                  <span className="text-xs font-semibold text-dark uppercase tracking-wider">Verified Celo Contracts</span>
                 </div>
-                <div className="bg-dark text-white p-3 rounded-none font-mono text-xs">
-                  npm install @celalyze/agent-core
+
+                <div className="space-y-3 font-mono text-xs">
+                  <div className="p-3 bg-secondary border border-dark rounded-none space-y-1">
+                    <div className="text-dark/60 text-2xs font-sans uppercase font-bold">TaxReportAttestation</div>
+                    <a
+                      href="https://celoscan.io/address/0xB21D6470363e7d2E4a75d5386fA369E9FcB5BA6f"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-dark hover:underline font-semibold flex items-center gap-1 text-2xs sm:text-xs truncate"
+                    >
+                      <span>0xB21D6470...5BA6f</span>
+                      <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                    </a>
+                  </div>
+
+                  <div className="p-3 bg-secondary border border-dark rounded-none space-y-1">
+                    <div className="text-dark/60 text-2xs font-sans uppercase font-bold">AgentRegistry</div>
+                    <a
+                      href="https://celoscan.io/address/0x60EeCE2904bBF0f4B8eD4ec35cD69658cAFeE1da"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-dark hover:underline font-semibold flex items-center gap-1 text-2xs sm:text-xs truncate"
+                    >
+                      <span>0x60EeCE29...eE1da</span>
+                      <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                    </a>
+                  </div>
                 </div>
-                <p className="text-xs text-dark/70">
-                  Ready-to-use analytical primitives for Celo DeFi protocols.
+
+                <p className="text-2xs text-dark/70 text-center font-sans">
+                  Targeting Celo Hackathon Track 3 (Askbots) & Track 4 (Aigora)
                 </p>
               </div>
             </div>
