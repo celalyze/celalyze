@@ -1,0 +1,49 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Environment variables — NEVER commit secrets
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.turbo/
+
+# Cache
+.cache/
+.vite/
+.eslintcache
+*.tsbuildinfo
+
+# Foundry / Solidity artifacts
+apps/contracts/out/
+apps/contracts/cache/
+apps/contracts/broadcast/*/
+apps/contracts/lib/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Antigravity IDE agent data (local only)
+.gemini/
+
+# Test coverage
+coverage/

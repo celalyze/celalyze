@@ -1,0 +1,14 @@
+{
+  "name": "celalyze",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "dotenvx run -- pnpm --filter web dev",
+    "build": "dotenvx run -- pnpm --filter web build",
+    "lint": "dotenvx run -- pnpm --filter web lint",
+    "test:contracts": "dotenvx run -- forge test --root apps/contracts"
+  },
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^2.15.1"
+  }
+}
