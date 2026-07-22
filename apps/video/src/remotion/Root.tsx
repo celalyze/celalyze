@@ -12,8 +12,15 @@ import {
   staticFile,
 } from 'remotion'
 
-// Remotion Presentation Video Settings (3 Minutes = 180 Seconds @ 30 FPS = 5400 Frames)
-export const PRESENTATION_DURATION_FRAMES = 5400
+// Remotion Presentation Video Settings (3 Minutes = 180 Seconds // Voiceover durations in frames (@ 30 fps)
+// c1: 15.88s -> 477 frames
+// c2: 16.43s -> 493 frames
+// c3: 20.43s -> 613 frames
+// c4: 15.31s -> 459 frames
+// c5: 12.96s -> 389 frames
+// c6: 9.98s -> 300 frames
+export const SLIDE_DURATIONS = [477, 493, 613, 459, 389, 300]
+export const PRESENTATION_DURATION_FRAMES = SLIDE_DURATIONS.reduce((a, b) => a + b, 0) // 2731 frames (~91.03 seconds)
 export const PRESENTATION_FPS = 30
 export const PRESENTATION_WIDTH = 1920
 export const PRESENTATION_HEIGHT = 1080
@@ -174,7 +181,7 @@ const PresentationSlide: React.FC<SlideProps> = ({
           <p style={{ margin: 0, fontSize: '16px', opacity: 0.8 }}>{subtitle}</p>
         </div>
 
-        {/* ElevenLabs Narration Caption Box */}
+        {/* Narration Caption Box */}
         <div
           style={{
             backgroundColor: COLORS.secondary,
@@ -292,10 +299,22 @@ const OutroSlide: React.FC = () => {
 }
 
 export const CelalyzePresentationVideo: React.FC = () => {
+  // Compute start frames dynamically based on exact voiceover audio durations
+  const f0 = 0
+  const f1 = f0 + SLIDE_DURATIONS[0]
+  const f2 = f1 + SLIDE_DURATIONS[1]
+  const f3 = f2 + SLIDE_DURATIONS[2]
+  const f4 = f3 + SLIDE_DURATIONS[3]
+  const f5 = f4 + SLIDE_DURATIONS[4]
+
   return (
     <AbsoluteFill>
-      {/* Slide 1: Landing / Hero (0s - 34s) */}
-      <Sequence from={0} durationInFrames={1020}>
+      {/* Backsound Audio Track (Volume 15%) */}
+      <Audio src={staticFile('video-assets/backsound.mp3')} volume={0.15} loop />
+
+      {/* Slide 1: Landing / Hero */}
+      <Sequence from={f0} durationInFrames={SLIDE_DURATIONS[0]}>
+        <Audio src={staticFile('video-assets/c1.mp3')} />
         <PresentationSlide
           imageSrc="video-assets/slide1_landing.png"
           badgeText="01 / OVERVIEW"
@@ -305,8 +324,9 @@ export const CelalyzePresentationVideo: React.FC = () => {
         />
       </Sequence>
 
-      {/* Slide 2: Dashboard Overview (34s - 68s) */}
-      <Sequence from={1020} durationInFrames={1020}>
+      {/* Slide 2: Dashboard Overview */}
+      <Sequence from={f1} durationInFrames={SLIDE_DURATIONS[1]}>
+        <Audio src={staticFile('video-assets/c2.mp3')} />
         <PresentationSlide
           imageSrc="video-assets/slide2_dashboard.png"
           badgeText="02 / DASHBOARD"
@@ -316,8 +336,9 @@ export const CelalyzePresentationVideo: React.FC = () => {
         />
       </Sequence>
 
-      {/* Slide 3: Tax Reports (68s - 102s) */}
-      <Sequence from={2040} durationInFrames={1020}>
+      {/* Slide 3: Tax Reports */}
+      <Sequence from={f2} durationInFrames={SLIDE_DURATIONS[2]}>
+        <Audio src={staticFile('video-assets/c3.mp3')} />
         <PresentationSlide
           imageSrc="video-assets/slide3_tax_reports.png"
           badgeText="03 / TAX ENGINE"
@@ -327,8 +348,9 @@ export const CelalyzePresentationVideo: React.FC = () => {
         />
       </Sequence>
 
-      {/* Slide 4: Transaction History & AI Labels (102s - 136s) */}
-      <Sequence from={3060} durationInFrames={1020}>
+      {/* Slide 4: Transaction History & AI Labels */}
+      <Sequence from={f3} durationInFrames={SLIDE_DURATIONS[3]}>
+        <Audio src={staticFile('video-assets/c4.mp3')} />
         <PresentationSlide
           imageSrc="video-assets/slide4_history.png"
           badgeText="04 / CLASSIFICATION"
@@ -338,8 +360,9 @@ export const CelalyzePresentationVideo: React.FC = () => {
         />
       </Sequence>
 
-      {/* Slide 5: Interactive AI Chat Agent (136s - 165s) */}
-      <Sequence from={4080} durationInFrames={870}>
+      {/* Slide 5: Interactive AI Chat Agent */}
+      <Sequence from={f4} durationInFrames={SLIDE_DURATIONS[4]}>
+        <Audio src={staticFile('video-assets/c5.mp3')} />
         <PresentationSlide
           imageSrc="video-assets/slide5_ai_chat.png"
           badgeText="05 / AI CHAT"
@@ -349,13 +372,11 @@ export const CelalyzePresentationVideo: React.FC = () => {
         />
       </Sequence>
 
-      {/* Slide 6: Outro (165s - 180s) */}
-      <Sequence from={4950} durationInFrames={450}>
+      {/* Slide 6: Outro */}
+      <Sequence from={f5} durationInFrames={SLIDE_DURATIONS[5]}>
+        <Audio src={staticFile('video-assets/c6.mp3')} />
         <OutroSlide />
       </Sequence>
-
-      {/* Optional ElevenLabs Audio Track (Place voiceover.mp3 in public/video-assets if available) */}
-      {/* <Audio src={staticFile("video-assets/voiceover.mp3")} /> */}
     </AbsoluteFill>
   )
 }
